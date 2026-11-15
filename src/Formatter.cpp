@@ -16,16 +16,10 @@ std::string Formatter::replaceWords(const std::string& text, const std::string& 
 }
 
 bool Formatter::isStringInText(const std::string& text, const std::string& request) { // NOLINT(readability-convert-member-functions-to-static, bugprone-easily-swappable-parameters)
-    if (!this) {
-        return false;
-    }
     return text.find(request) != std::string::npos;
 }
 
 std::string Formatter::eachCapitalize(const std::string& text) { // NOLINT(readability-convert-member-functions-to-static)
-    if (!this) {
-        return text;
-    }
     std::string newtext = text;
     bool newWord = true;
 
@@ -42,9 +36,6 @@ std::string Formatter::eachCapitalize(const std::string& text) { // NOLINT(reada
 }
 
 std::string Formatter::firstCapitalize(const std::string& text) { // NOLINT(readability-convert-member-functions-to-static)
-    if (!this) {
-        return text;
-    }
     std::string newtext = text;
     bool newSent = true;
 
@@ -61,9 +52,6 @@ std::string Formatter::firstCapitalize(const std::string& text) { // NOLINT(read
 }
 
 std::string Formatter::enumerateSentences(const std::string& text) { // NOLINT(readability-convert-member-functions-to-static)
-    if (!this) {
-        return text;
-    }
     std::string newtext = "1. ";
     int iii = 2;
 
