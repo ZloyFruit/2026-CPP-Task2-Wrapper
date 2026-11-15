@@ -1,10 +1,6 @@
-#include <string>
-#include <iostream>
+#include "Test.h"
 
-class Test {
-public:
-    int execute(const std::string& s, int i, bool b) {
-        std::cout << s << " " << i << " " << b << std::endl;
-        return i;
-    }
-};
+int Test::execute(const std::string& sss, int iii, bool bbb) {
+    std::cout << sss << " " << iii << " " << bbb << "\n";
+    return iii;
+}

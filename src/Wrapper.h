@@ -27,8 +27,8 @@ class Wrapper<Ret (Obj::*)(Args...)> : public BaseWrapper {
     ArgVec Vdefaults;
 
 public:
-    Wrapper(Obj* s, Ret (Obj::*m)(Args...), const ArgVec& def)
-     : subj(s), method(m), Vdefaults(def) {}
+    Wrapper(Obj* sss, Ret (Obj::*mmm)(Args...), ArgVec def)
+     : subj(sss), method(mmm), Vdefaults(std::move(def)) {}
 
     std::any execute(const ArgDict& arguments) override {
         ArgDict merged;
@@ -43,7 +43,7 @@ public:
     }
 
     template <size_t... I>
-    std::any callfunc(const ArgDict& args, std::index_sequence<I...>) {
+    std::any callfunc(const ArgDict& args, std::index_sequence<I...> seq) {
         if constexpr (std::is_void_v<Ret>) {
             (subj->*method)(std::any_cast<Args>(args.at(Vdefaults[I].first))...);
             return std::any{};

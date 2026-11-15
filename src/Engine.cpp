@@ -1,26 +1,14 @@
-#pragma once
+#include "Engine.h"
 
-#include "Wrapper.cpp"
-#include <string>
-#include <unordered_map>
-#include <memory>
-#include <iostream>
+void Engine::register_command(std::unique_ptr<BaseWrapper> wrap, const std::string& commandName) {
+    Wrappers[commandName] = std::move(wrap);
 
+    std::cout << "Успешно зарегистрирована команда под названием: " << commandName << "\n";
+}
 
-class Engine {
-std::unordered_map<std::string, std::unique_ptr<BaseWrapper>> Wrappers;
-
-public:
-    void register_command(std::unique_ptr<BaseWrapper> w, const std::string& commandName) {
-        Wrappers[commandName] = std::move(w);
-
-        std::cout << "Успешно зарегистрирована команда под названием: " << commandName << std::endl;
+std::any Engine::execute(const std::string& commandName, const ArgDict& arguments) {
+    if (Wrappers.find(commandName) == Wrappers.end()) {
+        throw std::runtime_error("Не найденно имя команды: " + commandName);
     }
-
-    std::any execute(const std::string& commandName, const ArgDict& arguments) {
-        if (Wrappers.find(commandName) == Wrappers.end()) {
-            throw std::runtime_error("Не найденно имя команды: " + commandName);
-        }
-        return Wrappers[commandName]->execute(arguments);
-    }
-};
+    return Wrappers[commandName]->execute(arguments);
+}

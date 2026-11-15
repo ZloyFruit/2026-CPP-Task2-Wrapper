@@ -1,72 +1,69 @@
-#include <string>
-#include <cctype>
+#include "Formatter.h"
 
-class Formatter {
-public:
-    std::string replaceWords(const std::string& text, const std::string& from, const std::string& to) {
-        if (from.empty())
-            return text;
-        
-        std::string newtext = text;
-        size_t index = 0;
-        while ((index = newtext.find(from, index)) != std::string::npos) {
-            newtext.replace(index, from.length(), to);
-            index += to.length(); 
-        }
-
-        return newtext;
+std::string Formatter::replaceWords(const std::string& text, const std::string& from, const std::string& too) {
+    if (from.empty()) {
+        return text;
     }
-
-    bool isStringInText(const std::string& text, const std::string& request) {
-        return text.find(request) != std::string::npos;
-    }
-
-    std::string eachCapitalize(const std::string& text) {
-        std::string newtext = text;
-        bool newWord = true;
     
-        for (char& c : newtext) {
-            if (std::isspace(c)) {
-                newWord = true;
-            } else if (newWord && std::isalpha(c)) {
-                c = static_cast<char>(std::toupper(c));
-                newWord = false;
-            }
-        }
-
-        return newtext;
+    std::string newtext = text;
+    size_t index = 0;
+    while ((index = newtext.find(from, index)) != std::string::npos) {
+        newtext.replace(index, from.length(), too);
+        index += too.length(); 
     }
 
-    std::string firstCapitalize(const std::string& text) {
-        std::string newtext = text;
-        bool newSent = true;
-    
-        for (char& c : newtext) {
-            if (c == '.' || c == '!' || c == '?') {
-                newSent = true;
-            } else if (newSent && std::isalpha(c)) {
-                c = static_cast<char>(std::toupper(c));
-                newSent = false;
-            }
-        }
+    return newtext;
+}
 
-        return newtext;
+bool Formatter::isStringInText(const std::string& text, const std::string& request) {
+    return text.find(request) != std::string::npos;
+}
+
+std::string Formatter::eachCapitalize(const std::string& text) {
+    std::string newtext = text;
+    bool newWord = true;
+
+    for (char& ccc : newtext) {
+        if (static_cast<bool>(std::isspace(ccc))) {
+            newWord = true;
+        } else if (newWord && static_cast<bool>(std::isalpha(ccc))) {
+            ccc = static_cast<char>(std::toupper(ccc));
+            newWord = false;
+        }
     }
 
-    std::string enumerateSentences(const std::string& text) {
-        std::string newtext = "1. ";
-        int i = 2;
+    return newtext;
+}
 
-    
-        for (char c : text) {
-            if (c == '.') {
-                newtext += ".\n" + std::to_string(i) + ".";
-                i++;
-            } else {
-                newtext += c;
-            }
+std::string Formatter::firstCapitalize(const std::string& text) {
+    std::string newtext = text;
+    bool newSent = true;
+
+    for (char& ccc : newtext) {
+        if (ccc == '.' || ccc == '!' || ccc  == '?') {
+            newSent = true;
+        } else if (newSent && static_cast<bool>(std::isalpha(ccc))) {
+            ccc = static_cast<char>(std::toupper(ccc));
+            newSent = false;
         }
-
-        return newtext;
     }
-};
+
+    return newtext;
+}
+
+std::string Formatter::enumerateSentences(const std::string& text) {
+    std::string newtext = "1. ";
+    int iii = 2;
+
+
+    for (char ccc : text) {
+        if (ccc == '.') {
+            newtext += ".\n" + std::to_string(iii) + ".";
+            iii++;
+        } else {
+            newtext += ccc;
+        }
+    }
+
+    return newtext;
+}
