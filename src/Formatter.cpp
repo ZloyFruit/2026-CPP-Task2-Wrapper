@@ -1,9 +1,6 @@
 #include "Formatter.h"
 
-std::string Formatter::replaceWords(const std::string& text, const std::string& from, const std::string& too) { // NOLINT(bugprone-easily-swappable-parameters)
-    if (!this) {
-        return text;
-    }
+std::string Formatter::replaceWords(const std::string& text, const std::string& from, const std::string& too) { // NOLINT(readability-convert-member-functions-to-static, bugprone-easily-swappable-parameters)
     if (from.empty()) {
         return text;
     }
@@ -18,14 +15,14 @@ std::string Formatter::replaceWords(const std::string& text, const std::string& 
     return newtext;
 }
 
-bool Formatter::isStringInText(const std::string& text, const std::string& request) { // NOLINT(bugprone-easily-swappable-parameters)
+bool Formatter::isStringInText(const std::string& text, const std::string& request) { // NOLINT(readability-convert-member-functions-to-static, bugprone-easily-swappable-parameters)
     if (!this) {
         return false;
     }
     return text.find(request) != std::string::npos;
 }
 
-std::string Formatter::eachCapitalize(const std::string& text) {
+std::string Formatter::eachCapitalize(const std::string& text) { // NOLINT(readability-convert-member-functions-to-static)
     if (!this) {
         return text;
     }
@@ -44,7 +41,7 @@ std::string Formatter::eachCapitalize(const std::string& text) {
     return newtext;
 }
 
-std::string Formatter::firstCapitalize(const std::string& text) {
+std::string Formatter::firstCapitalize(const std::string& text) { // NOLINT(readability-convert-member-functions-to-static)
     if (!this) {
         return text;
     }
@@ -63,7 +60,7 @@ std::string Formatter::firstCapitalize(const std::string& text) {
     return newtext;
 }
 
-std::string Formatter::enumerateSentences(const std::string& text) {
+std::string Formatter::enumerateSentences(const std::string& text) { // NOLINT(readability-convert-member-functions-to-static)
     if (!this) {
         return text;
     }
