@@ -5,6 +5,7 @@
 #include <any>
 #include <utility>
 #include <vector>
+#include <memory>
 
 using ArgDict = std::unordered_map<std::string, std::any>;
 using ArgVec = std::vector<std::pair<std::string, std::any>>;
