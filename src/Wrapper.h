@@ -44,6 +44,7 @@ public:
 
     template <size_t... I>
     std::any callfunc(const ArgDict& args, std::index_sequence<I...> seq) {
+        (void)seq;
         if constexpr (std::is_void_v<Ret>) {
             (subj->*method)(std::any_cast<Args>(args.at(Vdefaults[I].first))...);
             return std::any{};
