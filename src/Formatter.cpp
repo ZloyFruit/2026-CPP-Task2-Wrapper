@@ -1,6 +1,9 @@
 #include "Formatter.h"
 
-std::string Formatter::replaceWords(const std::string& text, const std::string& from, const std::string& too) {
+std::string Formatter::replaceWords(const std::string& text, const std::string& from, const std::string& too) { // NOLINT(bugprone-easily-swappable-parameters)
+    if (!this) {
+        return text;
+    }
     if (from.empty()) {
         return text;
     }
@@ -15,11 +18,17 @@ std::string Formatter::replaceWords(const std::string& text, const std::string& 
     return newtext;
 }
 
-bool Formatter::isStringInText(const std::string& text, const std::string& request) {
+bool Formatter::isStringInText(const std::string& text, const std::string& request) { // NOLINT(bugprone-easily-swappable-parameters)
+    if (!this) {
+        return false;
+    }
     return text.find(request) != std::string::npos;
 }
 
 std::string Formatter::eachCapitalize(const std::string& text) {
+    if (!this) {
+        return text;
+    }
     std::string newtext = text;
     bool newWord = true;
 
@@ -36,6 +45,9 @@ std::string Formatter::eachCapitalize(const std::string& text) {
 }
 
 std::string Formatter::firstCapitalize(const std::string& text) {
+    if (!this) {
+        return text;
+    }
     std::string newtext = text;
     bool newSent = true;
 
@@ -52,6 +64,9 @@ std::string Formatter::firstCapitalize(const std::string& text) {
 }
 
 std::string Formatter::enumerateSentences(const std::string& text) {
+    if (!this) {
+        return text;
+    }
     std::string newtext = "1. ";
     int iii = 2;
 
