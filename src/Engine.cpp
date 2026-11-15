@@ -17,7 +17,7 @@ public:
         std::cout << "Успешно зарегистрирована команда под названием: " << commandName << std::endl;
     }
 
-    std::any execute(const std::string& commandName, ArgDict arguments) {
+    std::any execute(const std::string& commandName, const ArgDict& arguments) {
         if (Wrappers.find(commandName) == Wrappers.end()) {
             throw std::runtime_error("Не найденно имя команды: " + commandName);
         }
